@@ -74,6 +74,12 @@ fun <T> retrieveDataModelSharedPref(key: String, clazz: Class<T>): T? {
     }
 }
 
+fun Context.loadJSONFromAssets(fileName: String): String {
+    return applicationContext.assets.open(fileName).bufferedReader().use { reader ->
+        reader.readText()
+    }
+}
+
 fun showDialogTop(message: String?, title: String?, activity: Activity) {
 
     val alerter: Alerter = Alerter.create(activity)
