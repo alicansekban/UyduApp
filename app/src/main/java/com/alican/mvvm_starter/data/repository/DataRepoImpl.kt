@@ -1,6 +1,6 @@
 package com.alican.mvvm_starter.data.repository
 
-import com.alican.mvvm_starter.data.local.model.DataModel
+import com.alican.mvvm_starter.data.local.model.SatelliteModel
 import com.alican.mvvm_starter.data.remote.dto.toDataModel
 import com.alican.mvvm_starter.data.remote.webservice.WebService
 import com.alican.mvvm_starter.domain.repository.DataRepo
@@ -12,7 +12,7 @@ import javax.inject.Inject
 class DataRepoImpl @Inject constructor(
     private val webService: WebService
 ) : DataRepo {
-    override suspend fun getData(): Resource<DataModel> {
+    override suspend fun getData(): Resource<SatelliteModel> {
         try {
             val task = webService.getDataRepo()
             if (task.isSuccessful) {

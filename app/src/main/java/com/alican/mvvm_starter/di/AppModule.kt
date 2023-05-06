@@ -1,4 +1,4 @@
-package com.rohitjakhar.mvvmtemplate.di
+package com.alican.mvvm_starter.di
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import androidx.room.Room
+import com.alican.mvvm_starter.data.local.AppDao
 import com.alican.mvvm_starter.data.local.AppDatabase
 import com.alican.mvvm_starter.data.remote.webservice.AuthInterceptor
 import com.alican.mvvm_starter.data.remote.webservice.WebService
@@ -33,6 +34,15 @@ object AppModule {
     fun provideDataStore(@ApplicationContext context: Context): DataStore<Preferences> {
         return PreferenceDataStoreFactory.create {
             context.preferencesDataStoreFile(DATA_STORE_NAME)
+        }
+    }
+
+    @InstallIn(SingletonComponent::class)
+    @Module
+    class DatabaseModule {
+        @Provides
+        fun provideChannelDao(appDatabase: AppDatabase): AppDao {
+            return appDatabase.dao()
         }
     }
 
@@ -75,7 +85,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideStockDatabase(@ApplicationContext context: Context): AppDatabase {
-        return Room.databaseBuilder(context, AppDatabase::class.java, ROOM_DATA_BASE_NAME)
+        return Room.databaseBuilder(context, AppDatabase::class.java, "satellite.db")
             .fallbackToDestructiveMigration()
             .build()
     }

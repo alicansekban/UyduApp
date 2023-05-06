@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:background="@color/page_background"
             android:splitMotionEvents="false"
+            android:visibility="gone"
             app:itemTextColor="@color/text_color"
             app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toBottomOf="parent"
