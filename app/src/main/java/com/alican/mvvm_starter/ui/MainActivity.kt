@@ -27,6 +27,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initNavigation()
+        supportActionBar?.hide()
     }
 
     private fun initNavigation() {
@@ -43,10 +44,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.homeFragment,
-                //    R.id.searchFragment,
-                //  R.id.shoppingCartFragment,
-                //R.id.favoritesFragment,
-                // R.id.profileFragment,
             )
         )
         navHostFragment.navController.addOnDestinationChangedListener(this)

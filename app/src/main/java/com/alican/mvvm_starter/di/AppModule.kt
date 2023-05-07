@@ -6,13 +6,13 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import androidx.room.Room
-import com.alican.mvvm_starter.data.local.AppDao
+import com.alican.mvvm_starter.data.local.SatelliteDao
 import com.alican.mvvm_starter.data.local.AppDatabase
+import com.alican.mvvm_starter.data.local.SatelliteDetailDao
 import com.alican.mvvm_starter.data.remote.webservice.AuthInterceptor
 import com.alican.mvvm_starter.data.remote.webservice.WebService
 import com.alican.mvvm_starter.util.Constant.BASE_URL
 import com.alican.mvvm_starter.util.Constant.DATA_STORE_NAME
-import com.alican.mvvm_starter.util.Constant.ROOM_DATA_BASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,8 +41,8 @@ object AppModule {
     @Module
     class DatabaseModule {
         @Provides
-        fun provideChannelDao(appDatabase: AppDatabase): AppDao {
-            return appDatabase.dao()
+        fun provideChannelDao(appDatabase: AppDatabase): SatelliteDao {
+            return appDatabase.satelliteDao()
         }
     }
 
