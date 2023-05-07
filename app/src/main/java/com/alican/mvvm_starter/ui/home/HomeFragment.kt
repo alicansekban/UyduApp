@@ -64,10 +64,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
-    private fun showEmptyUI() {
-        binding.rvList.visibility = View.GONE
-    }
-
     private fun initAdapter(satelliteModels: List<SatelliteModel>) {
         hideProgressDialog()
         if (satelliteModels.isEmpty()) {
@@ -81,5 +77,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private fun showUI() {
         binding.rvList.visibility = View.VISIBLE
     }
+
+    private fun showEmptyUI() {
+        binding.rvList.visibility = View.GONE
+    }
+
 
 }

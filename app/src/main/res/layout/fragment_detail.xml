@@ -13,9 +13,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="268dp"
+            android:fontFamily="@font/sfprodisplay_bold"
             android:textColor="@color/grey"
             android:textSize="20sp"
-            android:fontFamily="@font/sfprodisplay_bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,46 +27,96 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:textSize="10sp"
             android:fontFamily="@font/sfprodisplay_semi_bold"
             android:textColor="@color/grey"
+            android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
             tools:text="01.12.2012" />
 
-        <TextView
-            android:id="@+id/tvInfo"
+        <LinearLayout
+            android:id="@+id/layoutInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:textColor="@color/grey"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvDate"
-            tools:text="Height/Mass:110/11350000" />
+            app:layout_constraintTop_toBottomOf="@id/tvDate">
 
-        <TextView
-            android:id="@+id/tvCost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/grey"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvInfo"
-            tools:text="Cost:8.300.000" />
+            <TextView
+                android:id="@+id/tvInfoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/sfprodisplay_bold"
+                android:text="Height/Mass:"
+                android:textColor="@color/grey" />
 
-        <TextView
-            android:id="@+id/tvLocation"
+            <TextView
+                android:id="@+id/tvInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:textColor="@color/grey"
+                tools:text="110/3003030" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutCost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/grey"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvCost"
-            tools:text="Last Position: (0.6323242424,0.72727727)" />
+            app:layout_constraintTop_toBottomOf="@id/layoutInfo">
+
+            <TextView
+                android:id="@+id/tvCostTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/sfprodisplay_bold"
+                android:text="Cost:"
+                android:textColor="@color/grey" />
+
+            <TextView
+                android:id="@+id/tvCost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:textColor="@color/grey"
+                tools:text="Cost:8.300.000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutCost">
+            <TextView
+                android:id="@+id/tvLocationTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/grey"
+                android:fontFamily="@font/sfprodisplay_bold"
+                android:text="Last Position: " />
+
+            <TextView
+                android:id="@+id/tvLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/grey"
+                tools:text="(0.6323242424,0.72727727)" />
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

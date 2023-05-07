@@ -35,14 +35,14 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
             viewModel.getSatelliteDetail(it).observe(viewLifecycleOwner) { data ->
                 hideProgressDialog()
                 binding.tvTitle.text = model?.name
-                binding.tvCost.text = getString(R.string.cost, data.cost_per_launch)
-                binding.tvInfo.text = "Height/Mass: ${data.height}/${data.mass}"
+                binding.tvCost.text = data.cost_per_launch.toString()
+                binding.tvInfo.text = "${data.height}/${data.mass}"
                 binding.tvDate.text = data.first_flight
 
             }
             lifecycleScope.launch {
                 viewModel.getPositions(it).collect {
-                    binding.tvLocation.text = "X: ${it.posX}\tY: ${it.posY}"
+                    binding.tvLocation.text = "(${it.posX},${it.posY})"
                 }
             }
         }

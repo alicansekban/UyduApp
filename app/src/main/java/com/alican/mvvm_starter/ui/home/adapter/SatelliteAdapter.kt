@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.alican.mvvm_starter.R
 import com.alican.mvvm_starter.data.local.model.SatelliteModel
 import com.alican.mvvm_starter.databinding.ItemSatelliteBinding
 
@@ -34,7 +35,7 @@ class SatelliteAdapter(val onClick: (SatelliteModel) -> Unit) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemSatelliteBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = ItemSatelliteBinding.inflate(LayoutInflater.from(parent.context),parent,false)
 
         return ViewHolder(binding) {
             onClick(getItem(it))
