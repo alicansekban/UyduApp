@@ -1,13 +1,11 @@
 package com.alican.mvvm_starter.ui.home
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.View
-import android.widget.SearchView
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.lifecycle.LiveData
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,82 +13,51 @@ import com.alican.mvvm_starter.R
 import com.alican.mvvm_starter.base.BaseFragment
 import com.alican.mvvm_starter.data.local.model.SatelliteModel
 import com.alican.mvvm_starter.databinding.FragmentHomeBinding
-import com.alican.mvvm_starter.databinding.ItemSatelliteBinding
-import com.alican.mvvm_starter.util.utils.loadJSONFromAssets
-import com.github.nitrico.lastadapter.BR
-import com.github.nitrico.lastadapter.LastAdapter
-import com.github.nitrico.lastadapter.Type
 import dagger.hilt.android.AndroidEntryPoint
-import org.json.JSONArray
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
-    private val viewModel: HomeViewModel by activityViewModels()
-
-    private var items = arrayListOf<SatelliteModel>()
-    private var keyword: String? = null
-    private lateinit var homeAdapter: LastAdapter
+    private val viewModel: HomeViewModel by viewModels()
     override fun getLayoutId(): Int = R.layout.fragment_home
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fetchJsonData()
         initSearch()
-        initObserver()
-
+        initViews()
     }
 
-    private fun initObserver() {
-        viewModel.finish.observe(viewLifecycleOwner) {
-            if (it) {
-                hideProgressDialog()
-                getDataFromDataBase()
-            }
-        }
-
-    }
-
-    private fun getDataFromDataBase() {
-        viewModel.getAllSatellite().observe(viewLifecycleOwner) {
-            if (it != null) {
-                items.clear()
-                items.addAll(it)
-                initAdapter()
-            }
-        }
-    }
-
-    private fun fetchJsonData() {
-        showProgressDialog()
-        val satelliteJsonArray =
-            JSONArray(requireContext().loadJSONFromAssets("satellite_list.json")) // Extension Function call here
-        for (i in 0 until satelliteJsonArray.length()) {
-
-            val satelliteJSONObject = satelliteJsonArray.getJSONObject(i)
-            val satelliteModel = SatelliteModel(
-                id = satelliteJSONObject.getInt("id"),
-                active = satelliteJSONObject.getBoolean("active"),
-                name = satelliteJSONObject.getString("name")
+    private fun initViews() {
+        binding.rvList.addItemDecoration(
+            DividerItemDecoration(
+                requireContext(),
+                LinearLayoutManager.VERTICAL
             )
+        )
 
-            items.add(satelliteModel)
+        binding.rvList.adapter = SatelliteAdapter {
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToDetailFragment(
+                    it
+                )
+            )
         }
-        viewModel.insertDataToDataBase(items)
+        getDataFromDataBase()
+    }
 
+    var observed: LiveData<List<SatelliteModel>>? = null
+
+    private fun getDataFromDataBase(query: String = "") {
+        observed?.removeObservers(viewLifecycleOwner)
+        observed = viewModel.searchWithQuery(query)
+
+        observed?.observe(viewLifecycleOwner) {
+            initAdapter(it)
+        }
     }
 
     private fun initSearch() {
         binding.edtSearch.addTextChangedListener {
-            keyword = it.toString()
             if (it?.length!! > 2) {
-                viewModel.searchWithQuery(it.toString()).observe(viewLifecycleOwner) { model ->
-                    if (model != null) {
-                        items.clear()
-                        items.add(model)
-                        initAdapter()
-                    } else {
-                        showEmptyUI()
-                    }
-                }
+                getDataFromDataBase(it.toString())
             } else {
                 getDataFromDataBase()
             }
@@ -101,32 +68,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.rvList.visibility = View.GONE
     }
 
-    private fun initAdapter() {
+    private fun initAdapter(satelliteModels: List<SatelliteModel>) {
+        hideProgressDialog()
+        if (satelliteModels.isEmpty()) {
+            showEmptyUI()
+        } else {
+            showUI()
+        }
+        (binding.rvList.adapter as? SatelliteAdapter)?.submitList(satelliteModels.map { it.copy() })
+    }
+
+    private fun showUI() {
         binding.rvList.visibility = View.VISIBLE
-        binding.rvList.addItemDecoration(
-            DividerItemDecoration(
-                requireContext(),
-                LinearLayoutManager.VERTICAL
-            )
-        )
-        homeAdapter = LastAdapter(items, BR.data)
-            .map<SatelliteModel>(
-                Type<ItemSatelliteBinding>(R.layout.item_satellite).onBind { row ->
-                    val data = row.binding.data
-                    row.binding.tvTitle.text = data?.name
-                    row.binding.tvActive.text = if (data?.active == true) "Active" else "Passive"
-                }
-                    .onClick { rowClick ->
-                        findNavController().navigate(
-                            HomeFragmentDirections.actionHomeFragmentToDetailFragment(
-                                rowClick.binding.data
-                            )
-                        )
-                        items.clear()
-                    }
-            ).into(binding.rvList)
-
-
     }
 
 }

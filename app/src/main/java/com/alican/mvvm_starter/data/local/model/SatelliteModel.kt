@@ -13,4 +13,7 @@ data class SatelliteModel(
     var id: Int,
     var active:Boolean,
     var name :String
-):Parcelable
+):Parcelable {
+
+    fun getActiveText() = if (active) "Active" else "Passive"
+}

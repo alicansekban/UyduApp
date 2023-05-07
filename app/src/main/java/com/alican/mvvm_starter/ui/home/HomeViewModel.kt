@@ -20,31 +20,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val webService: WebService,
     private val db: AppDatabase
 
 ) : ViewModel() {
-    val dataResponse: SingleLiveEvent<RESPONSE<BaseResponse<Any>>> =
-        SingleLiveEvent()
-
-    val finish = MutableLiveData(false)
-
-    fun getData() {
-        dataResponse.request({ webService.getData() })
-    }
     fun searchWithQuery(searchQuery:String) =  db.satelliteDao().getWithQuery(searchQuery)
 
     fun insertDataToDataBase(list: List<SatelliteModel>) {
         viewModelScope.launch(Dispatchers.IO) {
             db.satelliteDao().insertSatelliteData(list)
-            finish.postValue(true)
         }
     }
-    fun insertSatelliteDetailToDatabase(list:List<SatelliteDetailEntity>){
-        viewModelScope.launch(Dispatchers.IO) {
-            db.satelliteDetailDao().insertData(list)
-        }
-    }
-    fun getAllSatellite() = db.satelliteDao().getAllSatellite()
-    fun getSatelliteDetail(id:Int) = db.satelliteDetailDao().getDetailById(id)
 }

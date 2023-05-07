@@ -3,8 +3,10 @@ package com.alican.mvvm_starter.ui
 import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.forEach
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
@@ -17,6 +19,8 @@ import com.alican.mvvm_starter.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(),
@@ -24,10 +28,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
 
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private val viewModel : MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initNavigation()
         supportActionBar?.hide()
+        getData()
+    }
+
+    private fun getData() {
+       viewModel.getData()
     }
 
     private fun initNavigation() {

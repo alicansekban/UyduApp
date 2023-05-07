@@ -4,27 +4,33 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverter
 import androidx.room.TypeConverters
+import com.alican.mvvm_starter.data.local.model.PositionsItem
 import com.alican.mvvm_starter.data.local.model.SatelliteDetailEntity
 import com.alican.mvvm_starter.data.local.model.SatelliteModel
 import com.alican.mvvm_starter.data.local.model.SatellitePositionsEntity
-import com.alican.mvvm_starter.data.model.SatelliteDetailModel
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
-@Database(entities = [SatelliteModel::class, SatelliteDetailEntity::class], version = 2)
+@Database(
+    entities = [SatelliteModel::class, SatelliteDetailEntity::class, SatellitePositionsEntity::class],
+    version = 1
+)
 @TypeConverters(SatellitePositionsTypeConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun satelliteDao(): SatelliteDao
     abstract fun satelliteDetailDao(): SatelliteDetailDao
+    abstract fun satellitePositionsDao(): SatellitePositionsDao
 }
 
 class SatellitePositionsTypeConverter {
     @TypeConverter
-    fun stringToList(value: String): SatellitePositionsEntity {
-        return Gson().fromJson(value, SatellitePositionsEntity::class.java)
+    fun stringToPositionItem(value: String): List<PositionsItem> {
+        val type = object : TypeToken<List<PositionsItem>>() {}.type
+        return Gson().fromJson(value, type)
     }
 
     @TypeConverter
-    fun listToString(user: SatellitePositionsEntity): String {
+    fun positionItemToString(user: List<PositionsItem>): String {
         return Gson().toJson(user)
     }
 }

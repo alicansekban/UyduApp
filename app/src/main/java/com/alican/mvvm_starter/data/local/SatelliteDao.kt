@@ -14,10 +14,13 @@ interface SatelliteDao {
 
 
     @Query("SELECT * FROM satellite_list WHERE name LIKE '%' || :searchQuery || '%'" )
-    fun getWithQuery(searchQuery: String) : LiveData<SatelliteModel>
+    fun getWithQuery(searchQuery: String) : LiveData<List<SatelliteModel>>
 
     @Query("SELECT * FROM satellite_list")
     fun getAllSatellite() : LiveData<List<SatelliteModel>>
+
+    @Query("Select Count(*) from satellite_list")
+    suspend fun getSatelliteCount() : Int
 
   //  @Query("SELECT FROM satellite_list WHERE id = :id")
    // fun getDetailById(id:Int)

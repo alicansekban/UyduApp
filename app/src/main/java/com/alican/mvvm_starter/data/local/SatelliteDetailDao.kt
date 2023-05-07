@@ -11,11 +11,11 @@ interface SatelliteDetailDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertData(model: List<SatelliteDetailEntity>)
 
-    @Query("SELECT * FROM satellite_detail")
-    fun getAllSatellite() : LiveData<List<SatelliteDetailEntity>>
-
     @Query("Select * From satellite_detail Where id = :id")
     fun getDetailById(id: Int) : LiveData<SatelliteDetailEntity>
+
+    @Query("Select Count(*) from satellite_detail")
+    suspend fun getSatelliteCount() : Int
 
     @Delete
     fun deleteTable(entity: SatelliteDetailEntity)
