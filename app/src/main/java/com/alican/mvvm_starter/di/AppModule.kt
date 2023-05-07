@@ -6,9 +6,8 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import androidx.room.Room
-import com.alican.mvvm_starter.data.local.SatelliteDao
 import com.alican.mvvm_starter.data.local.AppDatabase
-import com.alican.mvvm_starter.data.local.SatelliteDetailDao
+import com.alican.mvvm_starter.data.local.SatelliteDao
 import com.alican.mvvm_starter.data.remote.webservice.AuthInterceptor
 import com.alican.mvvm_starter.data.remote.webservice.WebService
 import com.alican.mvvm_starter.util.Constant.BASE_URL

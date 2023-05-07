@@ -4,6 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.alican.mvvm_starter.R
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -16,4 +17,5 @@ data class SatelliteModel(
 ):Parcelable {
 
     fun getActiveText() = if (active) "Active" else "Passive"
+    fun getActiveImage() = if(active) R.drawable.bg_oval_green else R.drawable.bg_oval_red
 }

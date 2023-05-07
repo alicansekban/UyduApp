@@ -5,8 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alican.mvvm_starter.data.local.AppDatabase
 import com.alican.mvvm_starter.data.local.model.SatelliteModel
-import com.alican.mvvm_starter.data.model.SatelliteListItem
-import com.alican.mvvm_starter.util.Constant
 import com.alican.mvvm_starter.util.FilesName
 import com.alican.mvvm_starter.util.utils.loadJSONFromAssets
 import com.google.gson.Gson

@@ -4,6 +4,7 @@ package com.alican.mvvm_starter.util.utils
 
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
+import androidx.databinding.BindingAdapter
 import com.google.android.material.card.MaterialCardView
 
 object BindingAdapter {
@@ -13,6 +14,14 @@ object BindingAdapter {
         if (drawable == null)
             return
         view.setImageResource(drawable)
+    }
+
+    @JvmStatic
+    @BindingAdapter("app:setImageRes")
+    fun setImageRes(imageView: ImageView, res: Int?) {
+        res?.let {
+            imageView.setImageResource(res)
+        }
     }
 
     @JvmStatic

@@ -3,7 +3,6 @@ package com.alican.mvvm_starter.ui.home
 import android.os.Bundle
 import android.view.View
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.navigation.fragment.findNavController
@@ -13,6 +12,7 @@ import com.alican.mvvm_starter.R
 import com.alican.mvvm_starter.base.BaseFragment
 import com.alican.mvvm_starter.data.local.model.SatelliteModel
 import com.alican.mvvm_starter.databinding.FragmentHomeBinding
+import com.alican.mvvm_starter.ui.home.adapter.SatelliteAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
