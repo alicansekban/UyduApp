@@ -4,6 +4,7 @@ package com.alican.mvvm_starter.base
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
+import android.util.Log.e
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment
 import com.alican.mvvm_starter.R
 import com.alican.mvvm_starter.util.utils.BottomSheetDialog
 import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.LogUtils.e
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit

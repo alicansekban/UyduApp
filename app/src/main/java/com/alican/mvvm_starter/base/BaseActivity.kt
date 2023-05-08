@@ -10,10 +10,9 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import coil.request.Disposable
 import com.alican.mvvm_starter.R
 import com.alican.mvvm_starter.util.utils.customview.CustomDialog
-import io.reactivex.disposables.Disposable
-
 abstract class BaseActivity<VDB : ViewDataBinding> : AppCompatActivity() {
 
     lateinit var binding: VDB
