@@ -3,6 +3,7 @@ package com.alican.mvvm_starter.base
 
 import android.app.ProgressDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.alican.mvvm_starter.R
-import com.blankj.utilcode.util.LogUtils
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
@@ -47,7 +47,7 @@ abstract class BaseFragment<VDB : ViewDataBinding> : Fragment() {
                         d.dismiss()
                     }
                 } catch (e: Throwable) {
-                    LogUtils.e("Progress dialog scheduler error ", e)
+                    Log.e("fail",e.message.toString())
                 }
             }
         }, 20.toLong(), TimeUnit.SECONDS)
@@ -60,7 +60,7 @@ abstract class BaseFragment<VDB : ViewDataBinding> : Fragment() {
                 wheelingProcessDialogScheduler = null
             }
         } catch (e: Throwable) {
-            LogUtils.e(e.message, e)
+            Log.e("fail", e.message.toString())
         }
     }
 
