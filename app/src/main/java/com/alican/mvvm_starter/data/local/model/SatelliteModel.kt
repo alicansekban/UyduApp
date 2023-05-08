@@ -16,6 +16,6 @@ data class SatelliteModel(
 ):Parcelable {
 
     fun getActiveText() = if (active) "Active" else "Passive"
-    fun getTextColor() = if (active) R.color.black else R.color.grey
+    fun getTextColor() = if (active) R.color.black else R.color.passive_text_color
     fun getActiveImage() = if(active) R.drawable.bg_oval_green else R.drawable.bg_oval_red
 }

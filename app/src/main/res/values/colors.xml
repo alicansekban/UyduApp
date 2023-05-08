@@ -19,4 +19,5 @@
     <color name="text_color_60">#993C3E48</color>
     <color name="text_color_70">#B33C3E48</color>
     <color name="transparent">#00000000</color>
+    <color name="passive_text_color">#C3C3C3</color>
 </resources>
