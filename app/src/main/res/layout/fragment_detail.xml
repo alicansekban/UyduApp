@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/sfprodisplay_bold"
-                android:text="Height/Mass:"
+                android:text="@string/txt_height_mass"
                 android:textColor="@color/grey" />
 
             <TextView
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/sfprodisplay_bold"
-                android:text="Cost:"
+                android:text="@string/txt_cost"
                 android:textColor="@color/grey" />
 
             <TextView
@@ -106,7 +106,7 @@
                 android:layout_marginTop="16dp"
                 android:textColor="@color/grey"
                 android:fontFamily="@font/sfprodisplay_bold"
-                android:text="Last Position: " />
+                android:text="@string/txt_position" />
 
             <TextView
                 android:id="@+id/tvLocation"

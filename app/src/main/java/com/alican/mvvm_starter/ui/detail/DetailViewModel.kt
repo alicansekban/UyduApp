@@ -8,6 +8,7 @@ import com.alican.mvvm_starter.data.local.model.PositionsItem
 import com.alican.mvvm_starter.data.local.model.SatelliteDetailEntity
 import com.alican.mvvm_starter.data.local.model.SatelliteModel
 import com.alican.mvvm_starter.data.local.model.SatellitePositionModel
+import com.alican.mvvm_starter.util.FilesName
 import com.alican.mvvm_starter.util.utils.loadJSONFromAssets
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -33,7 +34,7 @@ class DetailViewModel @Inject constructor(
 
     private fun getData() {
         viewModelScope.launch {
-            val json = context.loadJSONFromAssets("positions.json")
+            val json = context.loadJSONFromAssets(FilesName.SATELLITE_POSITIONS)
             val data =
                 Gson().fromJson(json, SatellitePositionModel::class.java)
             data.list?.filterNotNull()?.let {
@@ -44,7 +45,7 @@ class DetailViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             db.satelliteDetailDao().getSatelliteCount().takeIf { it == 0 }?.let {
                 val satelliteJsonArray =
-                    context.loadJSONFromAssets("satellite_detail.json")
+                    context.loadJSONFromAssets(FilesName.SATELLITE_DETAIL)
 
                 val gson = Gson()
                 val type = object : TypeToken<List<SatelliteDetailEntity>>() {}.type
