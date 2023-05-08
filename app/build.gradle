@@ -107,26 +107,12 @@ dependencies {
     implementation "com.blankj:utilcodex:1.30.6"
 
 
-    // Alerter
-    implementation 'com.tapadoo.android:alerter:2.0.0'
-
-
-
     // Glide
     def glideVersion = "4.12.0"
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     kapt "com.github.bumptech.glide:compiler:$glideVersion"
     kapt "com.github.bumptech.glide:annotations:$glideVersion"
 
-
-    // Helper for easy request with retrofit & view model
-    implementation "com.github.murgupluoglu:request-android:4.2.0"
-
-
-    // Last Adapter
-    implementation "com.github.nitrico.lastadapter:lastadapter:2.3.0"
-    // datastore
-    implementation "androidx.datastore:datastore-preferences:1.0.0"
 
     // Room
     implementation "androidx.room:room-runtime:2.5.0"

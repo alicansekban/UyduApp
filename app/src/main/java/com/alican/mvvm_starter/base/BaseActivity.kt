@@ -4,7 +4,6 @@
  */
 package com.alican.mvvm_starter.base
 
-import android.content.Context
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
@@ -13,11 +12,11 @@ import androidx.databinding.ViewDataBinding
 import coil.request.Disposable
 import com.alican.mvvm_starter.R
 import com.alican.mvvm_starter.util.utils.customview.CustomDialog
+
 abstract class BaseActivity<VDB : ViewDataBinding> : AppCompatActivity() {
 
     lateinit var binding: VDB
     private lateinit var mCustomDialog: CustomDialog
-    lateinit var bottomSheetDialog: com.alican.mvvm_starter.util.utils.BottomSheetDialog
     var isCheckInternetActive = true
     private var connectivityDisposable: Disposable? = null
 
@@ -29,20 +28,6 @@ abstract class BaseActivity<VDB : ViewDataBinding> : AppCompatActivity() {
 
     @LayoutRes
     abstract fun getLayoutId(): Int
-
-    @Suppress("SameParameterValue")
-    fun showBottomSheet(
-        context: Context,
-        title: Int,
-        listener: com.alican.mvvm_starter.util.utils.BottomSheetDialog.BottomSheetListener,
-    ) {
-        bottomSheetDialog = com.alican.mvvm_starter.util.utils.BottomSheetDialog.instance.apply {
-            setupSheet(context.getString(title))
-            this.listener = listener
-        }.also {
-            it.show(supportFragmentManager, getString(title))
-        }
-    }
 
     fun showProgressDialog() {
         try {
