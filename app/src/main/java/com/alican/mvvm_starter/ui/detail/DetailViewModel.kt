@@ -31,7 +31,7 @@ class DetailViewModel @Inject constructor(
     }
 
     private fun getData() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val json = context.loadJSONFromAssets(FilesName.SATELLITE_POSITIONS)
             val data =
                 Gson().fromJson(json, SatellitePositionModel::class.java)
