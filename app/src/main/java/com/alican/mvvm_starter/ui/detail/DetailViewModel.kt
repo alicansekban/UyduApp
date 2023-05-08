@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.alican.mvvm_starter.data.local.AppDatabase
 import com.alican.mvvm_starter.data.local.model.PositionsItem
 import com.alican.mvvm_starter.data.local.model.SatelliteDetailEntity
-import com.alican.mvvm_starter.data.local.model.SatelliteModel
 import com.alican.mvvm_starter.data.local.model.SatellitePositionModel
 import com.alican.mvvm_starter.util.FilesName
 import com.alican.mvvm_starter.util.utils.loadJSONFromAssets
@@ -17,7 +16,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.transform
 import kotlinx.coroutines.launch
 import javax.inject.Inject

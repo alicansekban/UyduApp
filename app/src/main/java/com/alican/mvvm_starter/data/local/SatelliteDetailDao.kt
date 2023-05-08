@@ -1,9 +1,11 @@
 package com.alican.mvvm_starter.data.local
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.alican.mvvm_starter.data.local.model.SatelliteDetailEntity
-import com.alican.mvvm_starter.data.local.model.SatelliteModel
 
 @Dao
 interface SatelliteDetailDao {
@@ -16,8 +18,4 @@ interface SatelliteDetailDao {
 
     @Query("Select Count(*) from satellite_detail")
     suspend fun getSatelliteCount() : Int
-
-    @Delete
-    fun deleteTable(entity: SatelliteDetailEntity)
-
 }
