@@ -33,7 +33,6 @@ class MainViewModel @Inject constructor(
                     satelliteJsonArray,
                     type
                 )
-
                 data?.let {
                     db.satelliteDao().insertSatelliteData(it)
                 }
